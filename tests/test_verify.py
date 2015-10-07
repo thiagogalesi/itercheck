@@ -28,6 +28,10 @@ def test_match_pair_any():
     nt.assert_false(verify.match_pair_any(range(10, 20, 5), range(10, 20, 3), lambda a, b:(a==b and a != 10)))
 
 def test_match_pair_all():
-    nt.assert_true(verify.match_pair_all([2, 3, 1], [1, 2, 3], lambda a, b:a==b))
-    nt.assert_true(verify.match_pair_all([2, 3, 1], [1, 2, 3, 4], lambda a, b:a==b if (a and b) else True))
-    nt.assert_true(verify.match_pair_all(range(10, 20, 2), range(10, 20, 2), lambda a, b:a==b))
+    nt.assert_true(verify.match_pair_all([2, 3, 1], [1, 2, 3], lambda a, b: a == b))
+    nt.assert_true(verify.match_pair_all([2, 3, 1],
+                                         [1, 2, 3, 4],
+                                         lambda a, b: a == b or not (a and b)))
+    nt.assert_true(verify.match_pair_all(range(10, 20, 2),
+                                         range(10, 20, 2),
+                                         lambda a, b: a/10 == a/10))

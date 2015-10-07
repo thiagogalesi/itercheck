@@ -1,3 +1,4 @@
+from six.moves import zip_longest
 import itertools
 
 def _any(seq, pred=None):
@@ -54,17 +55,17 @@ def match_pair_any(seq1, seq2, pred):
             return True
     return False
 
-def match_pair_all(seq1, seq2, pred, key=None, cmp=None, reverse=False):
+def match_pair_all(seq1, seq2, pred, key=None, reverse=False):
     """Verify that all pairs (seq1, seq2), taken in order from the sequences
-       (sorted optionally with key/cmp as in sort)
+       (sorted optionally with key as in sort)
        match the predicate pred
        If one list is longer than the other, elements from the shorter
        sequence will be taken as None
        """
-    sorted_seq1 = sorted(seq1, cmp, key, reverse)
-    sorted_seq2 = sorted(seq2, cmp, key, reverse)
+    sorted_seq1 = sorted(seq1, key=key, reverse=reverse)
+    sorted_seq2 = sorted(seq2, key=key, reverse=reverse)
     result = True
-    for k in itertools.izip_longest(sorted_seq1, sorted_seq2):
+    for k in zip_longest(sorted_seq1, sorted_seq2):
         if not pred(k[0],k[1]):
             result = False
     return result
