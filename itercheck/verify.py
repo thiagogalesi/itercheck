@@ -1,4 +1,8 @@
-from six.moves import zip_longest
+try:
+    from six.moves import zip_longest
+except ImportError:
+    from itertools import izip_longest as zip_longest
+
 import itertools
 
 def _any(seq, pred=None):
