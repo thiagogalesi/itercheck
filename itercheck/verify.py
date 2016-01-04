@@ -42,14 +42,14 @@ def all_same(seq, key=None):
 def match_all(seq, f_seq, pred):
     """In a sequence, make sure all elements that match
        the predicate f_seq, match the predicate pred"""
-    f_seq = [k for k in seq if f_seq(k)]
-    return _all(f_seq, pred)
+    f_sequence = [k for k in seq if f_seq(k)]
+    return _all(f_sequence, pred)
 
 def match_any(seq, f_seq, pred):
     """In a sequence, make sure one element that matches
        the predicate f_seq, match the predicate pred"""
-    f_seq = [k for k in seq if f_seq(k)]
-    return _any(f_seq, pred)
+    f_sequence = [k for k in seq if f_seq(k)]
+    return _any(f_sequence, pred)
 
 def match_pair_any(seq1, seq2, pred):
     """Verify that there's a pair (seq1, seq2) that matches the predicate
